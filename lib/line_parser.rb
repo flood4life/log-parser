@@ -4,7 +4,7 @@ require_relative './line'
 
 # @LineParser accepts a string that is a single line in the webserver log
 # and returns an instance of @Line.
-# Supports the following line format: "$PATH $IP". If the input does not 
+# Supports the following line format: "$PATH $IP". If the input does not
 # follow the format, raises a @LineParser::UnexpectedLineFormatError
 class LineParser
   UnexpectedLineFormatError = Class.new(StandardError)
