@@ -18,4 +18,11 @@ class TestLineParser < Minitest::Test
     expected = Line.new(path: '/help_page/1', ip: '126.318.035.038')
     assert_equal parsed, expected
   end
+
+  def test_parsing_line_with_3_sections
+    input = '/help_page/1 126.318.035.038 404'
+    assert_raises LineParser::UnexpectedLineFormatError do
+      LineParser.new(input).call
+    end
+  end
 end
