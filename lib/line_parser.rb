@@ -9,8 +9,6 @@ require_relative './line'
 class LineParser
   UnexpectedLineFormatError = Class.new(StandardError)
 
-  attr_reader :line
-
   def initialize(line)
     @line = line
   end
@@ -21,4 +19,8 @@ class LineParser
 
     Line.new(path: sections.first, ip: sections.last)
   end
+
+  private
+
+  attr_reader :line
 end
