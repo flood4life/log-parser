@@ -43,3 +43,7 @@ Server log files can be quite large (tens of GBs), so the program cannot afford 
 The file is read line by line, `LineParser` transforms the string into a `Line`, which is fed into `VisitsCounter`, that keeps track of the total visits for each page and the unique IPs associated with each page. `StatsSorter` provides convenience methods to sort the stats based on the business requirements, `StdoutPresenter` transforms the stats into a string suitable for printing to STDOUT, and the `ProcessFile` command orchestrates the entire operation. Then it's up to the `parser.rb` script to wrap the command, provide the CLI and print the result.
 
 The responsibilities of each component are strictly limited and are easily tested in isolation (see the unit tests).
+
+## Other considerations
+
+I chose to use MiniTest instead of RSpec because I felt that the application is rather small and using RSpec would not add much value.
