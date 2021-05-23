@@ -55,9 +55,10 @@ class TestVisitsCounter < Minitest::Test
 
   private
 
-  def assert_lines_and_stats(lines, stats)
+  def assert_lines_and_stats(lines, expected_stats)
     counter = VisitsCounter.new
     lines.each { counter.record(_1) }
-    assert_equal stats, counter.stats
+
+    assert_equal expected_stats, counter.stats
   end
 end

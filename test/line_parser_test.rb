@@ -9,14 +9,14 @@ class TestLineParser < Minitest::Test
     input = '/help_page/1 126.318.035.038'
     parsed = LineParser.new(input).call
     expected = Line.new(path: '/help_page/1', ip: '126.318.035.038')
-    assert_equal parsed, expected
+    assert_equal expected, parsed
   end
 
   def test_parsing_line_with_whitespaces
     input = "    /help_page/1 126.318.035.038\n"
     parsed = LineParser.new(input).call
     expected = Line.new(path: '/help_page/1', ip: '126.318.035.038')
-    assert_equal parsed, expected
+    assert_equal expected, parsed
   end
 
   def test_parsing_line_with_3_sections
