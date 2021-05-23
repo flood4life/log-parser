@@ -46,6 +46,8 @@ class ProcessFile
     File.foreach(file_path) do |line|
       parsed_line = LineParser.new(line).call
       @counter.record(parsed_line)
+    rescue LineParser::UnexpectedLineFormatError
+      # do nothing, log warning
     end
   end
 end
