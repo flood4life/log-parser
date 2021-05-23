@@ -9,4 +9,4 @@ if ARGV.size != 1
 end
 
 file_path = ARGV.first
-ProcessFile.new(file_path).call
+puts ProcessFile.new(file_path).call

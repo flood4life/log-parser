@@ -5,7 +5,7 @@ require_relative '../lib/visits_counter'
 require_relative '../lib/stdout_presenter'
 
 # @ProcessFile is a command that orchestrates reading the webserver log,
-# parsing each line, and printing the sorted stats to STDOUT.
+# parsing each line, and returning a string suitable for printing.
 class ProcessFile
   def initialize(file_path)
     @file_path = file_path
@@ -15,24 +15,31 @@ class ProcessFile
   def call
     record_each_line
     @presenter = StdoutPresenter.new(counter.stats)
-    print_top_total_views
-    print_top_unique_views
+    result = ''
+    result += top_total_views
+    result += top_unique_views
+
+    result
   end
 
   private
 
   attr_reader :counter, :presenter, :file_path
 
-  def print_top_total_views
-    puts '--- TOP TOTAL VIEWS ---'
-    puts presenter.total
-    puts '--- END TOP TOTAL VIEWS ---'
+  def top_total_views
+    <<~TOTAL
+      --- TOP TOTAL VIEWS ---
+      #{presenter.total}
+      --- END TOP TOTAL VIEWS ---
+    TOTAL
   end
 
-  def print_top_unique_views
-    puts '--- TOP UNIQUE VIEWS ---'
-    puts presenter.unique
-    puts '--- END TOP UNIQUE VIEWS ---'
+  def top_unique_views
+    <<~UNIQUE
+      --- TOP UNIQUE VIEWS ---
+      #{presenter.unique}
+      --- END TOP UNIQUE VIEWS ---
+    UNIQUE
   end
 
   def record_each_line
