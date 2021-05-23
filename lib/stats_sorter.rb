@@ -5,8 +5,6 @@ require_relative './path_stats'
 # @StatsSorter provides convenience methods
 # to sort an array of @PathStats by total and by unique views.
 class StatsSorter
-  attr_reader :stats
-
   def initialize(stats)
     @stats = stats
   end
@@ -18,4 +16,8 @@ class StatsSorter
   def by_unique
     stats.sort_by(&:unique).reverse
   end
+
+  private
+
+  attr_reader :stats
 end
